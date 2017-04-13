@@ -36,19 +36,20 @@ void avoid() {
 int get_farest_direction() {
   int max_distance = 0;
   int farest_direction = -1;
+  int segment_size = 5;
 
   decrease_proximity_heading_to(PROXIMITY_SERVO_MIN);
-  for(int i=PROXIMITY_SERVO_MIN; i < PROXIMITY_SERVO_MAX; i = i+6){
-    int distance_sum = 0;
-    for(int probe=0; probe < 5; probe++){
-      proximity_heading.write(i+probe);
+  for(int i=PROXIMITY_SERVO_MIN; i < PROXIMITY_SERVO_MAX; i = i+segment_size){
+    int segment_sum = 0;
+    for(int segment_index=0; segment_index < segment_size; segment_index++){
+      proximity_heading.write(i+segment_index);
       delay(10);
-      distance_sum += proximity.ping_cm();
+      segment_sum += proximity.ping_cm();
     }
-    int avg_distance = distance_sum / 6;
+    int avg_distance = segment_sum / segment_size;
     if(avg_distance > max_distance){
       max_distance = avg_distance;
-      farest_direction = i+3;
+      farest_direction = i+(segment_size/2);
     }
   }
   decrease_proximity_heading_to(PROXIMITY_SERVO_MID);

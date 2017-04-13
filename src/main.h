@@ -20,13 +20,13 @@
 #define CENTER_LINE_DETECTOR 9
 #define RIGHT_LINE_DETECTOR 10
 
-#define STRAIGHT_TURN_TIME 1000
 #define DEFAULT_SPEED 255
 
 void setup();
 void loop();
-void decrease_proximity_heading_to(int direction);
-int get_farest_direction();
 void avoid();
+int get_farest_direction();
+void decrease_proximity_heading_to(int direction);
+int degree_to_turn_time(int degree);
 
 #endif

@@ -27,9 +27,9 @@ void avoid() {
   if(farest_direction == -1){
     wheels.backward(DEFAULT_SPEED, 1500);
   }else if(farest_direction < 90){
-    wheels.turn_right(DEFAULT_SPEED, 500+((90-farest_direction)*STRAIGHT_TURN_TIME)/90);
+    wheels.turn_right(DEFAULT_SPEED, degree_to_turn_time(90 - farest_direction));
   }else{
-    wheels.turn_left(DEFAULT_SPEED, 500+((farest_direction-90)*STRAIGHT_TURN_TIME)/90);
+    wheels.turn_left(DEFAULT_SPEED, degree_to_turn_time(farest_direction - 90));
   }
 }
 
@@ -59,4 +59,8 @@ int get_farest_direction() {
 void decrease_proximity_heading_to(int direction){
   int currentDirection = proximity_heading.read();
   for(int i=currentDirection; i > direction; i--){ proximity_heading.write(i); delay(5); }
+}
+
+int degree_to_turn_time(int degree){
+  return 500+(degree*1000)/90;
 }

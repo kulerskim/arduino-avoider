@@ -12,6 +12,7 @@ Project relies on the following hardware:
 - Arduino Uno board
 - Motor shield using L298N controller
 - Proximity sensor (HC-SR04 or similar)
+- Line sensor (TCRT5000)
 - Servo
 
 See/modify main.h file for pinout details.

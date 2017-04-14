@@ -14,11 +14,18 @@ void setup() {
 }
 
 void loop() {
-  if (proximity.ping_cm() < 50 && proximity.ping_cm() > 0) {
+  if (is_line_detected()) {
+    wheels.backward(DEFAULT_SPEED, 1500);
+    wheels.turn_left(DEFAULT_SPEED, 2000);
+  }else if (proximity.ping_cm() < 50 && proximity.ping_cm() > 0) {
    avoid();
   } else {
    wheels.forward(DEFAULT_SPEED, 50);
   }
+}
+
+bool is_line_detected() {
+  return digitalRead(LEFT_LINE_DETECTOR) == HIGH || digitalRead(CENTER_LINE_DETECTOR) == HIGH || digitalRead(RIGHT_LINE_DETECTOR) == HIGH;
 }
 
 void avoid() {

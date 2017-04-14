@@ -25,6 +25,7 @@
 void setup();
 void loop();
 void avoid();
+bool is_line_detected();
 int get_farest_direction();
 void decrease_proximity_heading_to(int direction);
 int degree_to_turn_time(int degree);
